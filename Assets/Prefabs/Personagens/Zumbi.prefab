@@ -559,6 +559,7 @@ GameObject:
   - component: {fileID: 7905297157520770304}
   - component: {fileID: 6628418731899960615}
   - component: {fileID: 6904899635638088663}
+  - component: {fileID: 7468938545210173478}
   m_Layer: 7
   m_Name: Zumbi
   m_TagString: Zumbi
@@ -641,6 +642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59a7c2e5976b894cb5edc830c3cdebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 10
   velocidade: 5
   jogador: {fileID: 0}
 --- !u!54 &6904899635638088663
@@ -659,6 +661,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!136 &7468938545210173478
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063500868937916}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1 &1065480718027956
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,14 +1360,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4729257623563424}
   - component: {fileID: 137967736789789780}
-  - component: {fileID: 1566360334}
   m_Layer: 7
   m_Name: Zumbi_SegurancaAeroporto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4729257623563424
 Transform:
   m_ObjectHideFlags: 0
@@ -1438,20 +1453,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000017285347, y: 1.41348, z: -0.07679981}
     m_Extent: {x: 1.6845055, y: 1.4134803, z: 0.4339838}
   m_DirtyAABB: 0
---- !u!136 &1566360334
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374577511837298}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1
-  m_Height: 3
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1 &1385381977519954
 GameObject:
   m_ObjectHideFlags: 0
