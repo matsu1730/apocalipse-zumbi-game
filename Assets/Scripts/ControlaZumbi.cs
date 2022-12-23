@@ -50,7 +50,7 @@ public class ControlaZumbi : MonoBehaviour
     void OnTriggerEnter(Collider objetoDeColisao) 
     {
         if (objetoDeColisao.gameObject.tag == "Bala") {
-            this.Hp -= 5;
+            this.Hp -= 10;
         }
         if (this.Hp <= 0) {
             Object.Destroy(this.gameObject);

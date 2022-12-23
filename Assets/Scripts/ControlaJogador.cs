@@ -9,7 +9,7 @@ public class ControlaJogador : MonoBehaviour
     public float Velocidade = 20;
     private Vector3 direcao;
     private Vector3 movimentacao;
-    public LayerMask MascaraDoChao;
+    public LayerMask MascaraChao;
     public GameObject TextoGameOver;
     public bool Vivo = true;
     private Rigidbody rigidBodyJogador;
@@ -62,7 +62,7 @@ public class ControlaJogador : MonoBehaviour
 
         
 
-        if(Physics.Raycast(raio, out impacto, 100, MascaraDoChao)) {
+        if(Physics.Raycast(raio, out impacto, 100, MascaraChao)) {
             posicaoMiraJogador = impacto.point - transform.position;
             posicaoMiraJogador.y = transform.position.y;
 

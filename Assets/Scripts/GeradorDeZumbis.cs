@@ -6,7 +6,7 @@ public class GeradorDeZumbis : MonoBehaviour
 {
     public GameObject Zumbi;
     private float contadorTempo = 0;
-    private float tempoGerarZumbi = 1;
+    public float TempoGerarZumbi = 1;
     void Start()
     {
         
@@ -17,7 +17,7 @@ public class GeradorDeZumbis : MonoBehaviour
 
         contadorTempo += Time.deltaTime;
 
-        if (contadorTempo >= tempoGerarZumbi) {
+        if (contadorTempo >= TempoGerarZumbi) {
             Instantiate(Zumbi, transform.position, transform.rotation);
             contadorTempo = 0;
         }
