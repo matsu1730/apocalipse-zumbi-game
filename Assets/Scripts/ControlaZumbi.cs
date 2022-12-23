@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class ControlaZumbi : MonoBehaviour
 {
-    public float hp = 10;
-    public float velocidade = 5;
-    public GameObject jogador;
+    public float Hp = 10;
+    public float Velocidade = 5;
+    public GameObject Jogador;
+    private Rigidbody rigidBodyZumbi;
+    private Animator animatorZumbi;
     
     void Start()
     {
-        jogador = GameObject.FindWithTag("Jogador");
+        Jogador = GameObject.FindWithTag("Jogador");
+        rigidBodyZumbi = GetComponent<Rigidbody>();
+        animatorZumbi = GetComponent<Animator>();
         int geraTipoZumbi = Random.Range(1, 28);
         transform.GetChild(geraTipoZumbi).gameObject.SetActive(true);
     }
@@ -22,33 +26,33 @@ public class ControlaZumbi : MonoBehaviour
     void FixedUpdate()
     {
         // direção do jogador perante a posição do zumbi
-        Vector3 direcao = jogador.transform.position - transform.position;
-        Vector3 movimentacao = direcao.normalized * velocidade * Time.deltaTime;
+        Vector3 direcao = Jogador.transform.position - transform.position;
+        Vector3 movimentacao = direcao.normalized * Velocidade * Time.deltaTime;
 
         //cálculo de distancia do zumbi ao jogador
-        float distancia = Vector3.Distance(transform.position, jogador.transform.position);
+        float distancia = Vector3.Distance(transform.position, Jogador.transform.position);
 
         //calculo de rotação, para o zumbi olhar para o jogador
         Quaternion rotacao = Quaternion.LookRotation(direcao);
-        GetComponent<Rigidbody>().MoveRotation(rotacao);
+        rigidBodyZumbi.MoveRotation(rotacao);
 
         //checagem de distancia para movimentação ou ataque
         if (distancia > 2.5) {
-            GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + movimentacao);
+            rigidBodyZumbi.MovePosition(rigidBodyZumbi.position + movimentacao);
 
-            GetComponent<Animator>().SetBool("atacando", false);
+            animatorZumbi.SetBool("atacando", false);
         }
         else if (distancia <= 2.5) {
-            GetComponent<Animator>().SetBool("atacando", true);
+            animatorZumbi.SetBool("atacando", true);
         }
     }
 
     void OnTriggerEnter(Collider objetoDeColisao) 
     {
         if (objetoDeColisao.gameObject.tag == "Bala") {
-            this.hp -= 5;
+            this.Hp -= 5;
         }
-        if (this.hp <= 0) {
+        if (this.Hp <= 0) {
             Object.Destroy(this.gameObject);
         }
     }
@@ -56,7 +60,7 @@ public class ControlaZumbi : MonoBehaviour
     void AtacaJogador() 
     {
         Time.timeScale = 0;
-        jogador.GetComponent<ControlaJogador>().TextoGameOver.SetActive(true);
-        jogador.GetComponent<ControlaJogador>().vivo = false;
+        Jogador.GetComponent<ControlaJogador>().TextoGameOver.SetActive(true);
+        Jogador.GetComponent<ControlaJogador>().Vivo = false;
     }
 }

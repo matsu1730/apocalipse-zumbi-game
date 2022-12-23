@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ControlaArma : MonoBehaviour
 {
-    public GameObject bala;
-    public GameObject canoDaArma;
+    public GameObject Bala;
+    public GameObject CanoDaArma;
     void Start()
     {
         
@@ -13,7 +13,7 @@ public class ControlaArma : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) {
-            Instantiate(bala, canoDaArma.transform.position, canoDaArma.transform.rotation);
+            Instantiate(Bala, CanoDaArma.transform.position, CanoDaArma.transform.rotation);
         }
     }
 }

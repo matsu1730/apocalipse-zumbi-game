@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GeradorDeZumbis : MonoBehaviour
 {
-    public GameObject zumbi;
-    float contadorTempo = 0;
-    public float tempoGerarZumbi = 1;
+    public GameObject Zumbi;
+    private float contadorTempo = 0;
+    private float tempoGerarZumbi = 1;
     void Start()
     {
         
@@ -18,7 +18,7 @@ public class GeradorDeZumbis : MonoBehaviour
         contadorTempo += Time.deltaTime;
 
         if (contadorTempo >= tempoGerarZumbi) {
-            Instantiate(zumbi, transform.position, transform.rotation);
+            Instantiate(Zumbi, transform.position, transform.rotation);
             contadorTempo = 0;
         }
         

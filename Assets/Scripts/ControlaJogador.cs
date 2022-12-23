@@ -6,15 +6,19 @@ using UnityEngine.SceneManagement;
 public class ControlaJogador : MonoBehaviour
 {
 
-    public float velocidade = 20;
-    Vector3 direcao;
-    Vector3 movimentacao;
-    public LayerMask mascaraDoChao;
+    public float Velocidade = 20;
+    private Vector3 direcao;
+    private Vector3 movimentacao;
+    public LayerMask MascaraDoChao;
     public GameObject TextoGameOver;
-    public bool vivo = true;
+    public bool Vivo = true;
+    private Rigidbody rigidBodyJogador;
+    private Animator animatorJogador;
 
     void Start() {
         Time.timeScale = 1;
+        rigidBodyJogador = GetComponent<Rigidbody>();
+        animatorJogador = GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -29,13 +33,13 @@ public class ControlaJogador : MonoBehaviour
 
         // definindo transição de animações de Idle e Correr
         if (direcao != Vector3.zero) {
-            GetComponent<Animator>().SetBool("movendo", true);
+            animatorJogador.SetBool("movendo", true);
         }
         else {
-            GetComponent<Animator>().SetBool("movendo", false);
+            animatorJogador.SetBool("movendo", false);
         }
 
-        if (vivo == false) {
+        if (Vivo == false) {
             if(Input.GetButtonDown("Fire1")) {
                 SceneManager.LoadScene("game");
             }
@@ -43,8 +47,8 @@ public class ControlaJogador : MonoBehaviour
     }
 
     void FixedUpdate() {
-        movimentacao = direcao * velocidade * Time.deltaTime;
-        GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + movimentacao);
+        movimentacao = direcao * Velocidade * Time.deltaTime;
+        rigidBodyJogador.MovePosition(rigidBodyJogador.position + movimentacao);
 
         //rotação do jogador
 
@@ -58,12 +62,12 @@ public class ControlaJogador : MonoBehaviour
 
         
 
-        if(Physics.Raycast(raio, out impacto, 100, mascaraDoChao)) {
+        if(Physics.Raycast(raio, out impacto, 100, MascaraDoChao)) {
             posicaoMiraJogador = impacto.point - transform.position;
             posicaoMiraJogador.y = transform.position.y;
 
             Quaternion novaRotacao = Quaternion.LookRotation(posicaoMiraJogador);
-            GetComponent<Rigidbody>().MoveRotation(novaRotacao);
+            rigidBodyJogador.MoveRotation(novaRotacao);
         }
 
     }
