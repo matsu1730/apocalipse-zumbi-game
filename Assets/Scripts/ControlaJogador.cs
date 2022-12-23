@@ -8,6 +8,7 @@ public class ControlaJogador : MonoBehaviour
     public float velocidade = 20;
     Vector3 direcao;
     Vector3 movimentacao;
+    public LayerMask mascaraDoChao;
 
     // Update is called once per frame
     void Update()
@@ -36,11 +37,18 @@ public class ControlaJogador : MonoBehaviour
         //rotação do jogador
 
         Ray raio = Camera.main.ScreenPointToRay(Input.mousePosition);
+        
+        //debuggando o raio
+        Debug.DrawRay(raio.origin, raio.direction * 100, Color.red);
+
         RaycastHit impacto;
 
-        if(Physics.Raycast(raio, out impacto, 100)) {
+        if(Physics.Raycast(raio, out impacto, 100, mascaraDoChao)) {
             Vector3 posicaoMiraJogador = impacto.point - transform.position;
             posicaoMiraJogador.y = transform.position.y;
+
+            Quaternion novaRotacao = Quaternion.LookRotation(posicaoMiraJogador);
+            GetComponent<Rigidbody>().MoveRotation(novaRotacao);
         }
 
     }

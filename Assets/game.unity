@@ -316,6 +316,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2124270934, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
+      propertyPath: mascaraDoChao.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 1884102019447498, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
       propertyPath: m_Name
       value: Jogador
@@ -909,6 +913,10 @@ PrefabInstance:
     - target: {fileID: 6498517393064028541, guid: 7359c465a06f03047b2756dae4f581ea, type: 3}
       propertyPath: m_Name
       value: Hotel_Estacionamento_Destruido
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498517393064028541, guid: 7359c465a06f03047b2756dae4f581ea, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7359c465a06f03047b2756dae4f581ea, type: 3}
