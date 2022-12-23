@@ -28,13 +28,17 @@ public class ControlaZumbi : MonoBehaviour
 
         //calculo de rotação, para o zumbi olhar para o jogador
         Quaternion rotacao = Quaternion.LookRotation(direcao);
+        GetComponent<Rigidbody>().MoveRotation(rotacao);
 
         //checagem de distancia para movimentação ou ataque
         if (distancia > 2.5) {
             GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + movimentacao);
-            GetComponent<Rigidbody>().MoveRotation(rotacao);
+
+            GetComponent<Animator>().SetBool("atacando", false);
         }
-        //else if (distancia <= 2.5) {}
+        else if (distancia <= 2.5) {
+            GetComponent<Animator>().SetBool("atacando", true);
+        }
     }
 
     void OnTriggerEnter(Collider objetoDeColisao) 
@@ -45,5 +49,12 @@ public class ControlaZumbi : MonoBehaviour
         if (this.hp <= 0) {
             Object.Destroy(this.gameObject);
         }
+    }
+
+    void AtacaJogador() 
+    {
+        Time.timeScale = 0;
+        jogador.GetComponent<ControlaJogador>().TextoGameOver.SetActive(true);
+        jogador.GetComponent<ControlaJogador>().vivo = false;
     }
 }

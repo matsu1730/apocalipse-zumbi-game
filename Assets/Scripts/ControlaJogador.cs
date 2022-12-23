@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ControlaJogador : MonoBehaviour
 {
@@ -9,7 +10,12 @@ public class ControlaJogador : MonoBehaviour
     Vector3 direcao;
     Vector3 movimentacao;
     public LayerMask mascaraDoChao;
+    public GameObject TextoGameOver;
+    public bool vivo = true;
 
+    void Start() {
+        Time.timeScale = 1;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -28,6 +34,12 @@ public class ControlaJogador : MonoBehaviour
         else {
             GetComponent<Animator>().SetBool("movendo", false);
         }
+
+        if (vivo == false) {
+            if(Input.GetButtonDown("Fire1")) {
+                SceneManager.LoadScene("game");
+            }
+        }
     }
 
     void FixedUpdate() {
@@ -42,9 +54,12 @@ public class ControlaJogador : MonoBehaviour
         Debug.DrawRay(raio.origin, raio.direction * 100, Color.red);
 
         RaycastHit impacto;
+        Vector3 posicaoMiraJogador;
+
+        
 
         if(Physics.Raycast(raio, out impacto, 100, mascaraDoChao)) {
-            Vector3 posicaoMiraJogador = impacto.point - transform.position;
+            posicaoMiraJogador = impacto.point - transform.position;
             posicaoMiraJogador.y = transform.position.y;
 
             Quaternion novaRotacao = Quaternion.LookRotation(posicaoMiraJogador);
