@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ControlaZumbi : MonoBehaviour
 {
+    public float hp = 10;
     public float velocidade = 5;
     public GameObject jogador;
     
@@ -33,8 +34,16 @@ public class ControlaZumbi : MonoBehaviour
             GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + movimentacao);
             GetComponent<Rigidbody>().MoveRotation(rotacao);
         }
-        else if (distancia <= 2.5) {
+        //else if (distancia <= 2.5) {}
+    }
 
+    void OnTriggerEnter(Collider objetoDeColisao) 
+    {
+        if (objetoDeColisao.gameObject.tag == "Bala") {
+            this.hp -= 5;
+        }
+        if (this.hp <= 0) {
+            Object.Destroy(this.gameObject);
         }
     }
 }

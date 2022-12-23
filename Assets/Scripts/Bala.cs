@@ -13,10 +13,10 @@ public class Bala : MonoBehaviour
 
     void OnTriggerEnter(Collider objetoDeColisao)
     {
-        if(objetoDeColisao.tag == "Zumbi" || objetoDeColisao.gameObject.layer.Equals("Zumbi")) {
-            //Destroy(objetoDeColisao.gameObject);
-            Object.Destroy(objetoDeColisao.gameObject);
-        }
+        /*if(objetoDeColisao.gameObject.tag == "Zumbi") {
+            Destroy(objetoDeColisao.gameObject);
+            //Object.Destroy(objetoDeColisao.gameObject);
+        }*/
 
         Destroy(this.gameObject);
     }
